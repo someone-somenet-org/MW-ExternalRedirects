@@ -16,6 +16,9 @@ function getTargetInfo( $article )
 
 function ExternalRedirect( $article, $content )
 {
+	global $wgEnableExternalRedirects;
+	if ( $wgEnableExternalRedirects != True )
+		return;
 	if ( $article->mIsRedirect != 1 )
 		return;
 	
