@@ -4,8 +4,8 @@ $wgHooks['ArticleAfterFetchContent'][] = 'ExternalRedirect';
 function getTargetInfo( $article )
 {
 	# get configuration from LocalSettings.php
-	global $wgExternalRedirectProtocolls;
-	$preg_protos = '(' . implode( '|', $wgExternalRedirectProtocolls ) . ')';
+	global $wgExternalRedirectProtocols;
+	$preg_protos = '(' . implode( '|', $wgExternalRedirectProtocols ) . ')';
 	$preg_expr = '/^#REDIRECT \[\[(' . $preg_protos . '.*)\]\]$/';
 	$num = preg_match( $preg_expr, $article->mContent, $matches);
 	$targetInfo = explode( '|', $matches[1] );
