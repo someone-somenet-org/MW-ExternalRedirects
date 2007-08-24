@@ -47,9 +47,10 @@ function ExternalRedirect( $article, $content )
 		$article->mContent = ''; # clear content
 
 		# add our own CSS (empty for now):
-		$wgOut->addHeadItem('ExternalRedirect.css', '<style type="text/css">
-			@import ' . $wgScriptPath . 
-			'/extensions/ExternalRedirects/ExternalRedirects.css </style>');
+# deactivated for now because it doesnt work in 1.9
+#		$wgOut->addHeadItem('ExternalRedirect.css', '<style type="text/css">
+#			@import ' . $wgScriptPath . 
+#			'/extensions/ExternalRedirects/ExternalRedirects.css </style>');
 
 		# that arrow-image:
 		$img_src = $wgStylePath . '/common/images/redirectltr.png';
