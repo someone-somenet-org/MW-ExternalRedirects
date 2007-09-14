@@ -18,9 +18,9 @@ function ExternalRedirect( $article, $content )
 {
 	global $wgEnableExternalRedirects;
 	if ( $wgEnableExternalRedirects != True )
-		return;
+		return true;
 	if ( $article->mIsRedirect != 1 )
-		return;
+		return true;
 	
 	# determine if this is an external redirect and determine target
 	$targetInfo = getTargetInfo( $article );
@@ -30,7 +30,7 @@ function ExternalRedirect( $article, $content )
 
 	# the redirect-link doesn't start with any of the protocols:
 	if ( $num == 0 ) 
-		return;
+		return true;
 
 	# get some important variables:
 	global $wgRequest, $wgOut;
@@ -39,7 +39,7 @@ function ExternalRedirect( $article, $content )
 	# sometimes we don't want to redirect.
 	# if an action is defined (i.e. when we edit a page!):
 	if ( array_key_exists('action', $requestValues) ) 
-		return;
+		return true;
 
 	# if redirect=no is given and we view the redirect:
 	if ( array_key_exists('redirect', $requestValues) ) {
@@ -63,7 +63,7 @@ function ExternalRedirect( $article, $content )
 
 		# actually add that arrow plus link to target
 		$wgOut->addHTML($img . $link);
-		return;
+		return true;
 	}
 
 	# we actually do a redirect:
