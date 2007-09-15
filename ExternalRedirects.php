@@ -68,5 +68,8 @@ function ExternalRedirect( $article, $content )
 
 	# we actually do a redirect:
 	$wgOut->redirect( $target );
+
+	# required for new MW-checks
+	return true;
 }
 ?>
