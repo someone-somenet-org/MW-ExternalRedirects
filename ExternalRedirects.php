@@ -13,12 +13,11 @@ function getTargetInfo( $article )
 {
 	# get configuration from LocalSettings.php
 	global $wgExternalRedirectProtocols;
-	$preg_protos = '(' . implode( '|', $wgExternalRedirectProtocols ) . ')';
-	$preg_expr = '/^#REDIRECT \[\[(' . $preg_protos . '.*)\]\]$/';
+	$preg_protos = '(' . implode( '|', $wgExternalRedirectProtocols ) .')';
+	$preg_expr = '/^#REDIRECT \[\[(' . $preg_protos . '[^(\]\])\|]*)\|?([^(\]\])]*)\]\]/';
 	$num = preg_match( $preg_expr, $article->mContent, $matches);
-	$targetInfo = explode( '|', $matches[1] );
-	$target = $targetInfo[0];
-	$targetText = $targetInfo[1];
+	$target = $matches[1];
+	$targetText = $matches[3];
 	return array( $num, $target, $targetText );
 }
 
