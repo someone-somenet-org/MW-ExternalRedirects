@@ -51,21 +51,20 @@ function ExternalRedirect( $article, $content )
 	# if redirect=no is given and we view the redirect:
 	if ( array_key_exists('redirect', $requestValues) ) {
 		global $wgStylePath, $wgScriptPath;
-		$article->mContent = ''; # clear content
 
-		# add our own CSS (empty for now):
-# deactivated for now because it doesnt work in 1.9
-#		$wgOut->addHeadItem('ExternalRedirect.css', '<style type="text/css">
-#			@import ' . $wgScriptPath . 
-#			'/extensions/ExternalRedirects/ExternalRedirects.css </style>');
+		#remove the #REDIRECT [[http....]]
+		preg_match( '/^(#REDIRECT \[\[[^(\]\])]*\]\])/', $content, $match );
+		$pattern = '/' . preg_quote( $match[1], '/' ) . '/';
+		$article->mContent = preg_replace( $pattern, '', $article->mContent );
 
 		# that arrow-image:
 		$img_src = $wgStylePath . '/common/images/redirectltr.png';
 		$img = '<img src="' . $img_src . '" alt="#REDIRECT" />';
 		if ( $targetText == '' ) # use target for targetText if no TargetText found"
 			$targetText = $target;
+		
 		# compose the link:
-		$link = '<a href="'. $target . '" class="external text" title="'
+		$link = '<a href="'. $target . '" class="external redirectText" title="'
 			. $targetText . '" rel="nofollow">' . $targetText . '</a>';
 
 		# actually add that arrow plus link to target
