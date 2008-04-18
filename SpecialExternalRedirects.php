@@ -72,7 +72,6 @@ class ExternalRedirects extends PageQueryPage {
 	function outputResults( $out, $skin, $dbr, $res, $num, $offset ) {
 		global $wgRequest;
 		if ( $wgRequest->getText( 'action' ) == "raw" ) {
-			print 'whatever';
 			if( $num > 0 ) {
 				for( $i = 0; $i < $num && $row = $dbr->fetchObject( $res ); $i++ ) {
 					$toObj = $row->rd_title;
