@@ -66,7 +66,7 @@ class ExternalRedirects extends PageQueryPage {
 		foreach( $wgExternalRedirectProtocols as $proto ) {
 			$arr[] = ucfirst( $proto );
 		}
-		$expr .= implode( '|', $arr ) . ')';
+		$expr .= implode( '|', $arr ) . '://)';
 
                 $dbr = wfGetDB( DB_SLAVE );
                 list( $page, $redirect ) = $dbr->tableNamesN( 'page', 'redirect' );
