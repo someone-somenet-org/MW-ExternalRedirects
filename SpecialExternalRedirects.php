@@ -69,6 +69,25 @@ class ExternalRedirects extends PageQueryPage {
                 return $sql;
         }
 
+	function outputResults( $out, $skin, $dbr, $res, $num, $offset ) {
+		global $wgRequest;
+		if ( $wgRequest->getText( 'action' ) == "raw" ) {
+			print 'whatever';
+			if( $num > 0 ) {
+				for( $i = 0; $i < $num && $row = $dbr->fetchObject( $res ); $i++ ) {
+					$toObj = $row->rd_title;
+					$firstLetter = substr( $toObj, 0, 1 );
+					$rest = substr( $toObj, 1 );
+					$toObj = strtolower( $firstLetter ) . $rest;
+					print $row->title . "\t" . $toObj . "\n";
+				}
+			}
+			die();
+		} else {
+			QueryPage::outputResults( $out, $skin, $dbr, $res, $num, $offset );
+		}
+	}
+
 	function formatResult( $skin, $result ) {
                 global $wgUser, $wgContLang;
 
