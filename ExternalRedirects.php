@@ -1,10 +1,34 @@
 <?php
+
+#register special page:
+$dir = dirname(__FILE__);
+
+$wgAutoloadClasses['ExternalRedirects'] = $dir . '/SpecialExternalRedirects.php';
+$wgExtensionMessagesFiles['ExternalRedirects'] = $dir . '/ExternalRedirects.i18n.php';
+$wgSpecialPages[ 'ExternalRedirects' ] = 'ExternalRedirects';
+$wgHooks['LanguageGetSpecialPageAliases'][] = 'efExternalRedirectsLocalizedPageName';
+
+function efExternalRedirectsLocalizedPageName() {
+	
+	wfLoadExtensionMessages('ExternalRedirects');
+	$textMain = wfMsgForContent('externalredirects');
+	$textUser = wfMsg('externalredirects');
+
+	# Convert from title in text form to DBKey and put it into the alias array:
+	$titleMain = Title::newFromText( $textMain );
+	$titleUser = Title::newFromText( $textUser );
+	$specialPageArray['ExternalRedirects'][] = $titleMain->getDBKey();
+	$specialPageArray['ExternalRedirects'][] = $titleUser->getDBKey();
+
+	return true;
+}
+
 $wgHooks['ArticleAfterFetchContent'][] = 'ExternalRedirect';
 
 $wgExtensionCredits['other'][] = array(
 	'name' => 'ExternalRedirects',
 	'description' => 'Allows you to use normal redirects as external redirects',
-	'version' => '1.2.1-1.11.0',
+	'version' => '1.5-1.12.0',
 	'author' => 'Mathias Ertl',
 	'url' => 'http://pluto.htu.tuwien.ac.at/devel_wiki/index.php/ExternalRedirects',
 );
@@ -25,6 +49,16 @@ function getTargetInfo( $article )
 	$target = $matches[1];
 	$targetText = $matches[2];
 	return array( $num, $target, $targetText );
+}
+
+function textIsRedirect( $text ) {
+	global $wgExternalRedirectProtocols;
+	$expr = '^(' . implode( '|', $wgExternalRedirectProtocols ) . ')';
+	return true;
+	if ( ereg( $expr, $text ) )
+		return true;
+	else
+		return false;
 }
 
 function ExternalRedirect( $article, $content )
