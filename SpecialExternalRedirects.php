@@ -6,6 +6,10 @@ class ExternalRedirects extends PageQueryPage {
 	}
 
 	function execute( $par ) {
+		global $wgExternalRedirectsEnableSpecialPage;
+		if ( ! $wgExternalRedirectsEnableSpecialPage )
+			return;
+
 		$this->setHeaders();
 		list( $limit, $offset ) = wfCheckLimits();
 		$this->doQuery( $offset, $limit );
@@ -22,9 +26,21 @@ class ExternalRedirects extends PageQueryPage {
 	function getRedirect( $par ) {
 		return;
 	}
-	function isListed() { return true; }
+	function isListed() {
+		global $wgExternalRedirectsEnableSpecialPage;
+		if ( ! $wgExternalRedirectsEnableSpecialPage )
+			return false;
+		else
+			return true;
+	}
 	function isRestricted() { return true; }
-	function userCanExecute() { return true; }
+	function userCanExecute() { 
+		global $wgExternalRedirectsEnableSpecialPage;
+		if ( ! $wgExternalRedirectsEnableSpecialPage )
+			return false;
+		else
+			return true;
+	}
 	function getDescription() { return wfMsg( 'mExternalRedirectsDescription') ; }
 	function including() { return false; }
 
