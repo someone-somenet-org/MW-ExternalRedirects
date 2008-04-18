@@ -33,7 +33,7 @@ class ExternalRedirects extends PageQueryPage {
 		else
 			return true;
 	}
-	function isRestricted() { return true; }
+	function isRestricted() { return false; }
 	function userCanExecute() { 
 		global $wgExternalRedirectsEnableSpecialPage;
 		if ( ! $wgExternalRedirectsEnableSpecialPage )
