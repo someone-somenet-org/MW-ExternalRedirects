@@ -9,7 +9,6 @@ $wgSpecialPages[ 'ExternalRedirects' ] = 'ExternalRedirects';
 $wgHooks['LanguageGetSpecialPageAliases'][] = 'efExternalRedirectsLocalizedPageName';
 
 function efExternalRedirectsLocalizedPageName() {
-	
 	wfLoadExtensionMessages('ExternalRedirects');
 	$textMain = wfMsgForContent('externalredirects');
 	$textUser = wfMsg('externalredirects');

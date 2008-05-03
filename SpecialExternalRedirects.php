@@ -6,10 +6,11 @@ class ExternalRedirects extends PageQueryPage {
 	}
 
 	function execute( $par ) {
-		global $wgExternalRedirectsEnableSpecialPage;
+		global $wgExternalRedirectsEnableSpecialPage, $wgOut;
 		if ( ! $wgExternalRedirectsEnableSpecialPage )
 			return;
 
+		$wgOut->setPagetitle( wfMsg('externalredirects' ) );
 		$this->setHeaders();
 		list( $limit, $offset ) = wfCheckLimits();
 		$this->doQuery( $offset, $limit );
@@ -45,11 +46,11 @@ class ExternalRedirects extends PageQueryPage {
 	function including() { return false; }
 
         function getName() {
-                return 'ExternalRedirects';
+                return wfMsgForContent( 'externalredirects' );
         }
         
 	function getLocalName() {
-                return 'ExternalRedirects';
+                return wfMsgForContent( 'externalredirects' );
         }
 
         function isExpensive( ) { return true; }
