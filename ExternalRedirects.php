@@ -16,9 +16,11 @@ function efExternalRedirectsLocalizedPageName() {
 
 	# Convert from title in text form to DBKey and put it into the alias array:
 	$titleMain = Title::newFromText( $textMain );
-	$titleUser = Title::newFromText( $textUser );
 	$specialPageArray['ExternalRedirects'][] = $titleMain->getDBKey();
-	$specialPageArray['ExternalRedirects'][] = $titleUser->getDBKey();
+#	if ( $textMain != $textUser ) {
+		$titleUser = Title::newFromText( $textUser );
+		$specialPageArray['ExternalRedirects'][] = $titleUser->getDBKey();
+#	}
 
 	return true;
 }
