@@ -50,7 +50,7 @@ class ExternalRedirects extends PageQueryPage {
         }
         
 	function getLocalName() {
-                return wfMsgForContent( 'externalredirects' );
+                return wfMsg( 'externalredirects' );
         }
 
         function isExpensive( ) { return true; }

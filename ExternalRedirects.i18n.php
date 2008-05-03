@@ -4,7 +4,8 @@ $messages = array( 'en' => array(
 		'mExternalRedirectsDescription' => 'External Redirects',
 	),
 	'de' => array(
-		'externalredirects' => 'Externe Weiterleitungen',
+#		'externalredirects' => 'Externe Weiterleitungen',
+		'externalredirects' => 'Externalredirects',
 #		'externe_weiterleitungen' => 'Externe Weiterleitungen',
 		'mExternalRedirectsDescription' => 'Externe Weiterleitungen',
 	),
