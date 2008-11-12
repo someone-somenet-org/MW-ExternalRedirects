@@ -34,7 +34,7 @@ $wgExtensionCredits['other'][] = array(
 	'url' => 'http://pluto.htu.tuwien.ac.at/devel_wiki/index.php/ExternalRedirects',
 );
 
-function getTargetInfo( $article )
+function getTargetInfo( $content )
 {
 	# get configuration from LocalSettings.php
 	global $wgExternalRedirectProtocols;
@@ -46,7 +46,7 @@ function getTargetInfo( $article )
 	$preg_end = '\]\]/';
 	$preg_expr = $preg_start . $preg_link . $preg_end;
 	
-	$num = preg_match( $preg_expr, $article->mContent, $matches);
+	$num = preg_match( $preg_expr, $content, $matches);
 	$target = $matches[1];
 	$targetText = $matches[2];
 	return array( $num, $target, $targetText );
@@ -71,7 +71,7 @@ function ExternalRedirect( $article, $content )
 		return true;
 	
 	# determine if this is an external redirect and determine target
-	$targetInfo = getTargetInfo( $article );
+	$targetInfo = getTargetInfo( $article->mContent );
 	$num = $targetInfo[0];
 	$target = $targetInfo[1];
 	$targetText = $targetInfo[2];
