@@ -29,7 +29,7 @@ $wgHooks['ArticleAfterFetchContent'][] = 'ExternalRedirect';
 $wgExtensionCredits['other'][] = array(
 	'name' => 'ExternalRedirects',
 	'description' => 'Allows you to use normal redirects as external redirects',
-	'version' => '1.5.1-1.12.0',
+	'version' => '1.5.2-1.12.0',
 	'author' => 'Mathias Ertl',
 	'url' => 'http://pluto.htu.tuwien.ac.at/devel_wiki/index.php/ExternalRedirects',
 );
