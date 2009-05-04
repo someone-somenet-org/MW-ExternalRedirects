@@ -43,7 +43,7 @@ function getTargetInfo( $content )
 	$preg_target = '(' . $preg_protos . '[^(\]\])\|]*)';
 	$preg_linktext = '(.*?(?=(?:\]\])))';
 	$preg_link = $preg_target . '(?:\|' . $preg_linktext . ')?';
-	$preg_end = '\]\]/';
+	$preg_end = '\]\]/i';
 	$preg_expr = $preg_start . $preg_link . $preg_end;
 	
 	$num = preg_match( $preg_expr, $content, $matches);
