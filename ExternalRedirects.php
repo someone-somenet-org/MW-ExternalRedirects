@@ -1,37 +1,20 @@
 <?php
 
-#register special page:
-$dir = dirname(__FILE__);
+# register special page:
+$dir = dirname(__FILE__) . '/';
 
-$wgAutoloadClasses['ExternalRedirects'] = $dir . '/SpecialExternalRedirects.php';
-$wgExtensionMessagesFiles['ExternalRedirects'] = $dir . '/ExternalRedirects.i18n.php';
+$wgAutoloadClasses['ExternalRedirects'] = $dir . 'SpecialExternalRedirects.php';
+$wgExtensionMessagesFiles['ExternalRedirects'] = $dir . 'ExternalRedirects.i18n.php';
+$wgExtensionAliasesFiles['MyExtension'] = $dir . 'MyExtension.alias.php';
 $wgSpecialPages[ 'ExternalRedirects' ] = 'ExternalRedirects';
-$wgHooks['LanguageGetSpecialPageAliases'][] = 'efExternalRedirectsLocalizedPageName';
-
-function efExternalRedirectsLocalizedPageName() {
-	wfLoadExtensionMessages('ExternalRedirects');
-	$textMain = wfMsgForContent('externalredirects');
-	$textUser = wfMsg('externalredirects');
-
-	# Convert from title in text form to DBKey and put it into the alias array:
-	$titleMain = Title::newFromText( $textMain );
-	$specialPageArray['ExternalRedirects'][] = $titleMain->getDBKey();
-#	if ( $textMain != $textUser ) {
-		$titleUser = Title::newFromText( $textUser );
-		$specialPageArray['ExternalRedirects'][] = $titleUser->getDBKey();
-#	}
-
-	return true;
-}
-
 $wgHooks['ArticleAfterFetchContent'][] = 'ExternalRedirect';
 
 $wgExtensionCredits['other'][] = array(
 	'name' => 'ExternalRedirects',
-	'description' => 'Allows you to use normal redirects as external redirects',
-	'version' => '1.5.2-1.12.0',
 	'author' => 'Mathias Ertl',
-	'url' => 'http://pluto.htu.tuwien.ac.at/devel_wiki/index.php/ExternalRedirects',
+	'description' => 'Allows you to use normal redirects as external redirects',
+	'version' => '1.5.2-1.15.0',
+	'url' => 'http://fs.fsinf.at/wiki/ExternalRedirects',
 );
 
 function getTargetInfo( $content )
