@@ -1,7 +1,7 @@
 <?php
 class ExternalRedirects extends PageQueryPage {
 	function ExternalRedirects() {
-		SpecialPage::SpecialPage( 'ExternalRedirects' );
+		parent::__construct( 'ExternalRedirects' );
                 wfLoadExtensionMessages( 'ExternalRedirects' );
 	}
 
