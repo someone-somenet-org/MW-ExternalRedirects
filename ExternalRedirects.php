@@ -5,7 +5,7 @@ $dir = dirname(__FILE__) . '/';
 
 $wgAutoloadClasses['ExternalRedirects'] = $dir . 'SpecialExternalRedirects.php';
 $wgExtensionMessagesFiles['ExternalRedirects'] = $dir . 'ExternalRedirects.i18n.php';
-$wgExtensionAliasesFiles['MyExtension'] = $dir . 'MyExtension.alias.php';
+$wgExtensionAliasesFiles['ExternalRedirects'] = $dir . 'SpecialExternalRedirects.alias.php';
 $wgSpecialPages[ 'ExternalRedirects' ] = 'ExternalRedirects';
 $wgHooks['ArticleAfterFetchContent'][] = 'ExternalRedirect';
 
