@@ -8,6 +8,7 @@ $wgExtensionMessagesFiles['ExternalRedirects'] = $dir . 'ExternalRedirects.i18n.
 $wgExtensionAliasesFiles['ExternalRedirects'] = $dir . 'SpecialExternalRedirects.alias.php';
 $wgSpecialPages[ 'ExternalRedirects' ] = 'ExternalRedirects';
 $wgHooks['ArticleAfterFetchContent'][] = 'ExternalRedirect';
+$wgQueryPages[] = array( 'ExternalRedirects', 'ExternalRedirects' );
 
 $wgExtensionCredits['other'][] = array(
 	'name' => 'ExternalRedirects',

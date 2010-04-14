@@ -1,7 +1,13 @@
 <?php
-class ExternalRedirects extends PageQueryPage {
-	function ExternalRedirects() {
-		parent::__construct( 'ExternalRedirects' );
+
+class ExternalRedirects extends QueryPage {
+	function __construct() {
+		/** 
+		 * We do not call parent::__construct here, because this does
+		 * not work with classes extending QueryPage. Instead we add an
+		 * array to $wgQueryPage in ExternalRedirects.php
+		 */
+		#parent::__construct( 'ExternalRedirects' );
                 wfLoadExtensionMessages( 'ExternalRedirects' );
 	}
 
