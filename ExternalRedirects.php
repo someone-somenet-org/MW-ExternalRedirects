@@ -13,7 +13,7 @@ $wgQueryPages[] = array( 'ExternalRedirects', 'ExternalRedirects' );
 $wgExtensionCredits['other'][] = array(
 	'name' => 'ExternalRedirects',
 	'author' => 'Mathias Ertl',
-	'description' => 'Allows you to use normal redirects as external redirects',
+	'description' => 'Allows you to use normal redirects as redirects to external websites',
 	'version' => '1.5.2-1.15.0',
 	'url' => 'http://fs.fsinf.at/wiki/ExternalRedirects',
 );
