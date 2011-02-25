@@ -32,7 +32,11 @@ function getTargetInfo( $content )
 	
 	$num = preg_match( $preg_expr, $content, $matches);
 	$target = $matches[1];
-	$targetText = $matches[2];
+	if ( count( $matches ) >= 3 ) {
+		$targetText = $matches[2];
+	} else {
+		$targetText = "";
+	}
 	return array( $num, $target, $targetText );
 }
 
