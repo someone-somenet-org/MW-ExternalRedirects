@@ -2,7 +2,7 @@
 
 class ExternalRedirects extends QueryPage {
 	function __construct() {
-		/** 
+		/**
 		 * We do not call parent::__construct here, because this does
 		 * not work with classes extending QueryPage. Instead we add an
 		 * array to $wgQueryPage in ExternalRedirects.php
@@ -41,7 +41,7 @@ class ExternalRedirects extends QueryPage {
 			return true;
 	}
 	function isRestricted() { return false; }
-	function userCanExecute() { 
+	function userCanExecute() {
 		global $wgExternalRedirectsEnableSpecialPage;
 		if ( ! $wgExternalRedirectsEnableSpecialPage )
 			return false;
@@ -54,7 +54,7 @@ class ExternalRedirects extends QueryPage {
         function getName() {
                 return wfMsgForContent( 'externalredirects' );
         }
-        
+
 	function getLocalName() {
                 return wfMsg( 'externalredirects' );
         }
@@ -65,7 +65,7 @@ class ExternalRedirects extends QueryPage {
         function getOrder() {
                 return '';
         }
- 
+
         function getSQL() {
 		global $wgExternalRedirectProtocols;
 		$expr = '^(';
@@ -133,16 +133,22 @@ class ExternalRedirects extends QueryPage {
                         }
                 }
 
-                $from = $skin->makeKnownLinkObj( $fromObj ,'', 'redirect=no' );
-                $edit = $skin->makeKnownLinkObj( $fromObj, wfMsgHtml( 'brokenredirects-edit' ), 'action=edit' );
+                $from = $skin->link($fromObj ,'', array(),
+                                    array('redirect' => 'no'));
+                $edit = $skin->link($fromObj, wfMsgHtml('brokenredirects-edit'),
+                                    array('action' => 'edit'));
                 $to   = $skin->makeExternalLink( $toObj, $toObj );
                 $arr = $wgContLang->getArrow();
 
                 $out = "{$from} {$edit}";
 
                 if( $wgUser->isAllowed( 'delete' ) ) {
-                        $delete = $skin->makeKnownLinkObj( $fromObj, wfMsgHtml( 'brokenredirects-delete' ), 'action=delete' );
-                        $out .= " {$delete}";
+                    $delete = $skin->link($fromObj,
+                        wfMsgHtml( 'brokenredirects-delete' ),
+                        array(),
+                        array('action' => 'delete')
+                    );
+                    $out .= " {$delete}";
                 }
 
                 $out .= " {$arr} {$to}";
