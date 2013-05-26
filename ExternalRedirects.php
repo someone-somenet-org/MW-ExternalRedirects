@@ -11,6 +11,7 @@ $wgHooks['ArticleAfterFetchContent'][] = 'ExternalRedirect';
 $wgQueryPages[] = array('ExternalRedirects', 'ExternalRedirects');
 
 $wgExtensionCredits['other'][] = array(
+    'path' => __file__,
 	'name' => 'ExternalRedirects',
 	'author' => 'Mathias Ertl',
 	'description' => 'Allows you to use normal redirects as redirects to external websites',
