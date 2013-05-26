@@ -1,11 +1,9 @@
 <?php
 
 # register special page:
-$dir = dirname(__FILE__) . '/';
-
-$wgAutoloadClasses['ExternalRedirects'] = $dir . 'SpecialExternalRedirects.php';
-$wgExtensionMessagesFiles['ExternalRedirects'] = $dir . 'ExternalRedirects.i18n.php';
-$wgExtensionAliasesFiles['ExternalRedirects'] = $dir . 'SpecialExternalRedirects.alias.php';
+$wgAutoloadClasses['ExternalRedirects'] = __DIR__ . 'SpecialExternalRedirects.php';
+$wgExtensionMessagesFiles['ExternalRedirects'] = __DIR__ . 'ExternalRedirects.i18n.php';
+$wgExtensionAliasesFiles['ExternalRedirects'] = __DIR__ . 'SpecialExternalRedirects.alias.php';
 $wgSpecialPages['ExternalRedirects'] = 'ExternalRedirects';
 $wgHooks['ArticleAfterFetchContent'][] = 'ExternalRedirect';
 $wgQueryPages[] = array('ExternalRedirects', 'ExternalRedirects');
