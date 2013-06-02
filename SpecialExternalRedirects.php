@@ -7,8 +7,7 @@ class ExternalRedirects extends QueryPage {
          * not work with classes extending QueryPage. Instead we add an
          * array to $wgQueryPage in ExternalRedirects.php
          */
-        #parent::__construct('ExternalRedirects');
-        wfLoadExtensionMessages('ExternalRedirects');
+        parent::__construct('ExternalRedirects');
         $this->mName = 'ExternalRedirects';
     }
 
