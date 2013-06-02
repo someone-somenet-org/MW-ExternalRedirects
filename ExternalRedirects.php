@@ -1,11 +1,11 @@
 <?php
 
 # register special page:
-$wgAutoloadClasses['ExternalRedirects'] = __DIR__ . 'SpecialExternalRedirects.php';
-$wgExtensionMessagesFiles['ExternalRedirects'] = __DIR__ . 'ExternalRedirects.i18n.php';
-$wgExtensionAliasesFiles['ExternalRedirects'] = __DIR__ . 'SpecialExternalRedirects.alias.php';
+$wgAutoloadClasses['ExternalRedirects'] = __DIR__ . '/SpecialExternalRedirects.php';
+$wgExtensionMessagesFiles['ExternalRedirects'] = __DIR__ . '/ExternalRedirects.i18n.php';
+$wgExtensionAliasesFiles['ExternalRedirects'] = __DIR__ . '/SpecialExternalRedirects.alias.php';
 $wgSpecialPages['ExternalRedirects'] = 'ExternalRedirects';
-$wgHooks['ArticleAfterFetchContent'][] = 'ExternalRedirect';
+$wgHooks['ArticleAfterFetchContentObject'][] = 'fnExternalRedirect';
 $wgQueryPages[] = array('ExternalRedirects', 'ExternalRedirects');
 
 $wgExtensionCredits['other'][] = array(
@@ -49,40 +49,41 @@ function textIsRedirect($text) {
 		return false;
 }
 
-function ExternalRedirect($article, $content)
+function fnExternalRedirect($article, $content)
 {
-	global $wgEnableExternalRedirects;
+    global $wgRequest, $wgOut, $wgEnableExternalRedirects;
 	if ($wgEnableExternalRedirects != True)
 		return true;
 	if ($article->mIsRedirect != 1)
 		return true;
 
-	# determine if this is an external redirect and determine target
-	$targetInfo = getTargetInfo($article->mContent);
+    $requestValues = $wgRequest->getValues();
+
+    # sometimes we don't want to redirect.
+	# if an action is defined (i.e. when we edit a page!):
+	if (array_key_exists('action', $requestValues))
+		return true;
+
+    # determine if this is an external redirect and determine target
+    $text = trim($content->getNativeData());
+    $targetInfo = getTargetInfo($text);
 	$num = $targetInfo[0];
 	$target = $targetInfo[1];
 	$targetText = $targetInfo[2];
 
 	# the redirect-link doesn't start with any of the protocols:
 	if ($num == 0)
-		return true;
-
-	# get some important variables:
-	global $wgRequest, $wgOut;
-	$requestValues = $wgRequest->getValues();
-
-	# sometimes we don't want to redirect.
-	# if an action is defined (i.e. when we edit a page!):
-	if (array_key_exists('action', $requestValues))
-		return true;
-
+        return true;
 
 	# if redirect=no is given and we view the redirect:
-	if (array_key_exists('redirect', $requestValues)) {
-		global $wgStylePath, $wgScriptPath;
+    if (array_key_exists('redirect', $requestValues)) {
+        global $wgStylePath, $wgScriptPath;
+
+        # overwrite text in 1.21.0, so link doesn't get displayed twice.
+        $content->mText = '';
 
 		#remove the #REDIRECT [[http....]]
-		preg_match('/^(#REDIRECT .*?(?:\]\]))/', $content, $match);
+		preg_match('/^(#REDIRECT .*?(?:\]\]))/', $text, $match);
 		$pattern = '/' . preg_quote($match[1], '/') . '/';
 		$article->mContent = preg_replace($pattern, '', $article->mContent);
 
@@ -101,8 +102,8 @@ function ExternalRedirect($article, $content)
 		return true;
 	}
 
-	# we actually do a redirect:
-	$wgOut->redirect($target);
+    # we actually do a redirect:
+    $wgOut->redirect($target);
 
 	# required for new MW-checks
 	return true;
