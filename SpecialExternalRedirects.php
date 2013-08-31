@@ -41,7 +41,8 @@ class ExternalRedirects extends QueryPage {
             return true;
     }
     function isRestricted() { return false; }
-    function userCanExecute() {
+
+    function userCanExecute(User $user) {
         global $wgExternalRedirectsEnableSpecialPage;
         if (! $wgExternalRedirectsEnableSpecialPage)
             return false;
@@ -49,7 +50,7 @@ class ExternalRedirects extends QueryPage {
             return true;
     }
     function getDescription() { return wfMsg('mExternalRedirectsDescription') ; }
-    function including() { return false; }
+    function including($x = NULL) { return false; }
 
         function getName() {
                 return wfMsgForContent('externalredirects');
