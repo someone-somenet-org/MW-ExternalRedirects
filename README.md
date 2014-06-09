@@ -5,6 +5,9 @@ redirecting to it if a match is found. The extension is part of the
 [PerPageResources-project](https://fs.fsinf.at/wiki/PerPageResources) but can
 also be used standalone.
 
+The extension has been running on our [VorlesungsWiki](https://vowi.fsinf.at)
+since MediaWiki 1.11.0.
+
 Download 
 ========
 
