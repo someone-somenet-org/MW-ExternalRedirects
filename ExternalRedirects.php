@@ -14,7 +14,7 @@ $wgExtensionCredits['other'][] = array(
 	'author' => 'Mathias Ertl',
 	'description' => 'Allows you to use normal redirects as redirects to external websites',
 	'version' => '1.5.5',
-	'url' => 'http://fs.fsinf.at/wiki/ExternalRedirects',
+	'url' => 'https://github.com/mathiasertl/ExternalRedirects',
 );
 
 function getTargetInfo($content)
