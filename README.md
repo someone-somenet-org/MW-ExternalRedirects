@@ -47,8 +47,9 @@ $wgExternalRedirectProtocols = array('https?', 'ftp');
 ... which would make the 's' in "https" optional.
 
 
-It is also recommended that you apply the [[HideExternalRedirects]]-patch so
-that [[Special:BrokenRedirects]] does not list External Redirects.
+It is also recommended that you apply the
+[HideExternalRedirects-patch](https://fs.fsinf.at/wiki/HideExternalRedirects)
+so that ```Special:BrokenRedirects``` does not list External Redirects.
 
 Changelog
 =========
