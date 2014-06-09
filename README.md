@@ -58,42 +58,54 @@ Changelog
 * Improve regex matching external redirects so URLs can include "()".
 * Move repository to github.
 
-===== 1.5.4 =====
+1.5.4
+-----
 * Remove use of deprecated functions
 * Set a required property in special pages
 * Code-style cleanup
 
-===== 1.5.3 =====
+1.5.3
+-----
 * Update to work with new MediaWikis (requires 1.15.0 or later).
 * Handle external redirects that don't include a page text more gracefully.
 * This is the first version managed in git.
 
-===== 1.5.2 =====
+1.5.2
+-----
 * Made regex that matches ExternalRedirects case-insensitive
 * Some code-cleanup in ExternalRedirects.php
 
-===== 1.5.1 =====
+1.5.1
+-----
 * Added [[Special:ExternalRedirects]]. 
 * Introduced $wgExternalRedirectsEnableSpecialPage that controls if
   Special:ExternalRedirects is listed or not
-  * Some internationalization-work for the special page
-  : '''Note:''' This changelog is retroactive from SVN-changelogs.
 
-===== 1.2.1 =====
+  * Some internationalization-work for the special page
+
+  **Note:** This changelog is retroactive from SVN-changelogs.
+
+1.2.1
+-----
 * fixed a bug that caused broke external redirects with braces in their
 linktext.
 * all in all more elaborate regular expressions
 
-===== 1.2 =====
+1.2
+---
 * Display of external redirects is now way cleaner. Text is now big but still
 shown as external redirect (--> image) and categories are shown as well.
 
-===== 1.1 =====
+1.1
+---
 * Refine matching of Redirects so they now accecpt categories.
 
-===== 1.0 =====
+1.0
+---
 * First version documented here.
 
-=== Licence ===
+Licence
+=======
+
 [GPL v3](http://www.gnu.org/licenses/gpl-3.0.html) or any later version. 
 
