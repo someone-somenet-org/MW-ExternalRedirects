@@ -5,7 +5,9 @@ redirecting to it if a match is found. The extension is part of the
 [PerPageResources-project](https://fs.fsinf.at/wiki/PerPageResources) but can
 also be used standalone.
 
-=== Download ===
+Download 
+========
+
 Just do a normal
 
 ```
@@ -21,7 +23,9 @@ the newest version, use git checkout master.
 Note that GitHub allows you to download older different commits as tarball if
 you do not want to install git. 
 
-=== Installation & Configuration ===
+Installation & Configuration
+============================
+
 Download ExternalRedirects.php and include these lines in LocalSettings.php.
 ```php
 require_once("$IP/extensions/ExternalRedirects/ExternalRedirects.php");
@@ -32,7 +36,7 @@ $wgExternalRedirectProtocols = array('https', 'http', 'ftp');
 * **$wgEnableExternalRedirects:** A simple kill-switch in case this extension is
 abused by spammers. $wgExternalRedirectProtocols allows you to configure what
 protocols are detected as external redirects.
-; **$wgExternalRedirectProtocols:** Defines which protocols are recognized. The
+* **$wgExternalRedirectProtocols:** Defines which protocols are recognized. The
 strings are actually used in a regular expression, so the above example would
 be equivalent to
 
@@ -46,8 +50,11 @@ $wgExternalRedirectProtocols = array('https?', 'ftp');
 It is also recommended that you apply the [[HideExternalRedirects]]-patch so
 that [[Special:BrokenRedirects]] does not list External Redirects.
 
-=== Changelog ===
-===== 1.5.5 =====
+Changelog
+=========
+
+1.5.5
+-----
 * Improve regex matching external redirects so URLs can include "()".
 * Move repository to github.
 
