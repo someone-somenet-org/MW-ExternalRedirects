@@ -13,7 +13,7 @@ $wgExtensionCredits['other'][] = array(
 	'name' => 'ExternalRedirects',
 	'author' => 'Mathias Ertl',
 	'description' => 'Allows you to use normal redirects as redirects to external websites',
-	'version' => '1.5.4',
+	'version' => '1.5.5',
 	'url' => 'http://fs.fsinf.at/wiki/ExternalRedirects',
 );
 
@@ -23,7 +23,7 @@ function getTargetInfo($content)
 	global $wgExternalRedirectProtocols;
 	$preg_protos = '(?:' . implode("|", $wgExternalRedirectProtocols) .')';
 	$preg_start = '/^#REDIRECT \[\[';
-	$preg_target = '(' . $preg_protos . '[^(\]\])\|]*)';
+	$preg_target = '(' . $preg_protos . '[^\]\]\|]*)';
 	$preg_linktext = '(.*?(?=(?:\]\])))';
 	$preg_link = $preg_target . '(?:\|' . $preg_linktext . ')?';
 	$preg_end = '\]\]/i';
