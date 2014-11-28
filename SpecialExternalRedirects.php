@@ -16,7 +16,7 @@ class ExternalRedirects extends QueryPage {
         if (! $wgExternalRedirectsEnableSpecialPage)
             return;
 
-        $wgOut->setPagetitle(wfMsg('externalredirects'));
+        $wgOut->setPagetitle(wfMessage('externalredirects')->text());
         $this->setHeaders();
         list($limit, $offset) = wfCheckLimits();
         $this->doQuery($offset, $limit);
@@ -49,15 +49,15 @@ class ExternalRedirects extends QueryPage {
         else
             return true;
     }
-    function getDescription() { return wfMsg('mExternalRedirectsDescription') ; }
+    function getDescription() { return wfMessage('mExternalRedirectsDescription')->text() ; }
     function including($x = NULL) { return false; }
 
-        function getName() {
-                return wfMsgForContent('externalredirects');
-        }
+    function getName() {
+            return wfMessage('externalredirects')->inContentLanguage()->text();
+    }
 
     function getLocalName() {
-                return wfMsg('externalredirects');
+                return wfMessage('externalredirects')->text();
         }
 
         function isExpensive() { return true; }
