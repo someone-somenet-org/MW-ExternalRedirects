@@ -3,7 +3,7 @@
 # register special page:
 $wgAutoloadClasses['ExternalRedirects'] = __DIR__ . '/SpecialExternalRedirects.php';
 $wgExtensionMessagesFiles['ExternalRedirects'] = __DIR__ . '/ExternalRedirects.i18n.php';
-$wgExtensionAliasesFiles['ExternalRedirects'] = __DIR__ . '/SpecialExternalRedirects.alias.php';
+$wgExtensionMessagesFiles['ExternalRedirectsAlias'] = __DIR__ . '/SpecialExternalRedirects.alias.php';
 $wgSpecialPages['ExternalRedirects'] = 'ExternalRedirects';
 $wgHooks['ArticleAfterFetchContentObject'][] = 'fnExternalRedirect';
 $wgQueryPages[] = array('ExternalRedirects', 'ExternalRedirects');
