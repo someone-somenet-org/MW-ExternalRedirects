@@ -1,13 +1,13 @@
 <?php
-$aliases = array();
- 
+$specialPageAliases = array();
+
 /** English */
-$aliases['en'] = array(
-	'ExternalRedirects' => array( 'External Redirects' ),
+$specialPageAliases['en'] = array(
+	'ExternalRedirects' => array('ExternalRedirects', 'External Redirects'),
 );
-  
+
 /** German (Deutsch) */
-$aliases['de'] = array(
+$specialPageAliases['de'] = array(
 	'ExternalRedirects' => array( 'ExterneWeiterleitungen', 'Externe Weiterleitungen' ),
 );
 
