@@ -16,6 +16,7 @@ class ExternalRedirects extends QueryPage {
         if (! $wgExternalRedirectsEnableSpecialPage)
             return;
 
+
         $wgOut->setPagetitle(wfMessage('externalredirects')->text());
         $this->setHeaders();
         list($limit, $offset) = wfCheckLimits();
@@ -23,10 +24,10 @@ class ExternalRedirects extends QueryPage {
     }
 
     function setHeaders() {
-            global $wgOut;
-            $wgOut->setArticleRelated(false);
-            $wgOut->setRobotPolicy("noindex,nofollow");
-            $wgOut->setPageTitle($this->getDescription());
+        global $wgOut;
+        $wgOut->setArticleRelated(false);
+        $wgOut->setRobotPolicy("noindex,nofollow");
+        $wgOut->setPageTitle($this->getDescription());
     }
 
 
@@ -40,7 +41,9 @@ class ExternalRedirects extends QueryPage {
         else
             return true;
     }
-    function isRestricted() { return false; }
+    function isRestricted() {
+        return false;
+    }
 
     function userCanExecute(User $user) {
         global $wgExternalRedirectsEnableSpecialPage;
@@ -49,25 +52,29 @@ class ExternalRedirects extends QueryPage {
         else
             return true;
     }
-    function getDescription() { return wfMessage('mExternalRedirectsDescription')->text() ; }
-    function including($x = NULL) { return false; }
+    function getDescription() {
+        return wfMessage('mExternalRedirectsDescription')->text();
+    }
+    function including($x = NULL) {
+        return false;
+    }
 
     function getName() {
-            return wfMessage('externalredirects')->inContentLanguage()->text();
+        return wfMessage('externalredirects')->inContentLanguage()->text();
     }
 
     function getLocalName() {
-                return wfMessage('externalredirects')->text();
-        }
+        return wfMessage('externalredirects')->text();
+    }
 
-        function isExpensive() { return true; }
-        function isSyndicated() { return false; }
+    function isExpensive() { return true; }
+    function isSyndicated() { return false; }
 
-        function getOrder() {
-                return '';
-        }
+    function getOrder() {
+        return '';
+    }
 
-        function getSQL() {
+    function getSQL() {
         global $wgExternalRedirectProtocols;
         $expr = '^(';
         $arr = array();
@@ -105,7 +112,6 @@ class ExternalRedirects extends QueryPage {
                     print $row->title . "\t" . $toObj . "\n";
                 }
             }
-            die();
         } else {
             QueryPage::outputResults($out, $skin, $dbr, $res, $num, $offset);
         }
