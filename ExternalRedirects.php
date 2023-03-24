@@ -30,7 +30,7 @@ function getTargetInfo($content)
 	$preg_expr = $preg_start . $preg_link . $preg_end;
 
 	$num = preg_match($preg_expr, $content, $matches);
-	$target = $matches[1];
+	$target = @$matches[1];
 	if (count($matches) >= 3) {
 		$targetText = $matches[2];
 	} else {
@@ -80,7 +80,7 @@ function fnExternalRedirect($article, $content)
         global $wgStylePath, $wgScriptPath;
 
         # overwrite text in 1.21.0, so link doesn't get displayed twice.
-        $content->mText = '';
+        $content = '';
 
 		#remove the #REDIRECT [[http....]]
 		preg_match('/^(#REDIRECT .*?(?:\]\]))/', $text, $match);
